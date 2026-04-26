@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 
-const PATH = '.data/todos.json';
+const PATH = './data/todos.json';
 
 async function leerTodos() {
     try {
