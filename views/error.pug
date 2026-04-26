@@ -1,6 +1,5 @@
-extends layout
+extends layout.pug
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  h1(class="text-2xl font-bold text-red-500 mb-2")= message
+  p(class="text-slate-500")= error.status

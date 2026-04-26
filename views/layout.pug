@@ -1,7 +1,18 @@
 doctype html
-html
+html(lang="en")
   head
-    title= title
-    link(rel='stylesheet', href='/css/style.css')
-  body
-    block content
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title TODO List 
+    script(src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4")
+  
+  body(class="bg-slate-100 min-h-screen flex flex-col")  
+    
+    nav(class="bg-blue-700 text-white px-6 py-4")
+      h1(class="text-xl font-extrabold") 📝 TODO List
+    
+    main(class="w-full max-w-2xl mx-auto px-4 py-8 flex-1")
+      block content
+
+    footer(class="bg-white border-t border-slate-200 py-4 text-center text-slate-400 text-sm")
+      p &copy; MiloDev

@@ -1,0 +1,11 @@
+{
+	"compile-hero.disable-compile-files-on-did-save-code": false,
+	"tailwindCSS.includeLanguages": {
+		"jade": "html"
+	},
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"tailwindCSS.files.exclude": [],
+	"tailwindCSS.experimental.classRegex": [["class=\"([^\"]*)", "([^\"']*)"]]
+}
