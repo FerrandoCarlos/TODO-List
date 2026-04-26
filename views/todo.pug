@@ -4,14 +4,15 @@ block content
     h1(class="text-3xl font-bold text-slate-800 mb-6") Mi Lista 
 
     //- Formulario agregar
-    form(id='form-agregar',class="flex gap-2 mb-8")
-        input(
-            type="text",
-            id="input-tarea",
-            placeholder="Nueva tarea...",
-            class="flex-1 border border-slate-300 rounded-lg px-4 py-2 text-slate-700 focus:outline-none"
-        )
-        button(type="submit",class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" ) Agregar
+    form(id='form-agregar',class="flex flex-col gap-2 mb-8")
+        div(class="flex gap-2")
+            input(
+                type="text",
+                id="input-tarea",
+                placeholder="Nueva tarea...",
+                class="flex-1 border border-slate-300 rounded-lg px-4 py-2 text-slate-700 focus:outline-none"
+            )
+            button(type="submit",class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" ) Agregar
     
     //- Lista de TODOS
 

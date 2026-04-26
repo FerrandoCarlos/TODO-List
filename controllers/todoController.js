@@ -1,5 +1,6 @@
 const { leerTodos, escribirTodos } = require('../models/todoModel');
 const { randomUUID } = require('crypto');
+const { todoSchema } = require('../schemas/todoSchema');
 /**
  * Lista todos los items y renderiza la vista todo.pug
  */
@@ -17,7 +18,14 @@ async function listar(req, res, next) {
  */
 async function agregar(req, res, next) {
     try {
-        const { tarea } = req.body;
+        const resultado = todoSchema.safeParse(req.body);
+
+        if (!resultado.success) {
+            const errores = resultado.error.flatten().fieldErrors;
+            return res.status(400).json({ ok: false, errores });
+        }
+        const { tarea } = resultado.body;
+
         // Leer los todos existentes
         const todos = await leerTodos();
         // crear nuevo item con id único y fecha

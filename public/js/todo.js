@@ -1,4 +1,3 @@
-console.log('todo.js cargado');
 // Referencia al formulario y la lista
 const form = document.getElementById('form-agregar');
 const input = document.getElementById('input-tarea');
@@ -10,22 +9,30 @@ const lista = document.getElementById('lista-todos');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log('submit disparado');
+
     const tarea = input.value.trim();
-    if (!tarea) return;
+    if (!tarea) {
+        mensajeError('La tarea no puede estar vacía');
+        return;
+    }
 
     try {
         const res = await fetch('/todo/add', {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ tarea }),
         });
 
         const data = await res.json();
-
+        console.log(data)
         if (data.ok) {
             agregarItemDOM(data.todo);
             input.value = '';
+            mensajeError('');// limpiar error
+        } else {
+            // Mostrar error de validación
+            const msg = data.errores?.tarea?.[0] || 'Error al agregar tarea';
+            mensajeError(msg);
         }
 
     } catch (error) {
@@ -74,4 +81,20 @@ function agregarItemDOM(todo) {
         >Eliminar</button>
     `;
     lista.appendChild(li);
+}
+
+/**
+ * Muestra u oculta el mensaje de error debajo del input
+ * @param {string} msg
+ */
+
+function mensajeError(msg) {
+    let p = document.getElementById('error-tarea');
+    if (!p) {
+        p = document.createElement('p');
+        p.id = 'error-tarea';
+        p.className = 'text-red-500 text-sm mt-1';
+        form.appendChild(p);
+    }
+    p.textContent = msg;
 }
